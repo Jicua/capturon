@@ -1,2 +1,0 @@
-# capturon
-registro de asistencia
