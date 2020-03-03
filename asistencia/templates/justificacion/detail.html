@@ -3,13 +3,17 @@
 {% block content %}
 <h1>Detalle de Justificación</h1>
 <br/>
-<p><b>Estado:</b> {% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</p>
+
 <div class="row">
 	<div class="column pr-4">
 		<table class="mb-2">
 			<tr>
-				<td class="pb-2"><b>Nombre:</b></td>
-				<td class="pb-2">{{ justificacion.nombre }} {{ justificacion.apellidoP }} {{ justificacion.apellidoM }}</td>
+				<td><b>Estado:</b></td>
+				<td>{% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</td>
+			</tr>
+			<tr>
+				<td><b>Nombre:</b></td>
+				<td>{{ justificacion.nombre }} {{ justificacion.apellidoP }} {{ justificacion.apellidoM }}</td>
 			</tr>
 			<tr>
 				<td><b>Rut:</b></td>
@@ -20,7 +24,7 @@
 				<td>{{ justificacion.correo }}</td>
 			</tr>
 			<tr>
-				<td><b>Generación:</b></td>
+				<td class="pr-4"><b>Generación:</b></td>
 				<td>{{ justificacion.generacion }}</td>
 			</tr>
 		</table>
@@ -32,7 +36,7 @@
 					<td>{{ justificacion.diaInicio }} del {{ justificacion.mesInicio }}</td>
 				</tr>
 				<tr>
-					<td><b>Fecha de término:</b></td>
+					<td class="pr-4"><b>Fecha de término:</b></td>
 					<td>{{ justificacion.diaFin }}  del {{ justificacion.mesFin }}</td>
 				</tr>
 				<tr>
@@ -45,16 +49,17 @@
 				</tr>
 				<tr>
 					<td><b>Justificativo:</b></td>
-					<td><a href="{{ justificacion.justificativo }}">Ver archivo</a></td>
+					<td><a href="{{ justificacion.justificativo.url }}">Ver archivo</a></td>
 				</tr>
 		</table>
 	</div>
 </div>
-<br/>
 {% if justificacion.estado == 0 %}
+<br/>
 <input type="button" class="btn btn-success btn-lg px-4 mx-4" onclick="location.href='aprobar';" value='Aprobar'/>
 <input type="button" class="btn btn-danger btn-lg px-4 mx-4" onclick="location.href='rechazar';" value="Rechazar" />
-{% endif %}
 <br/>
+{% endif %}
+
 <input type="button" class="btn btn-secondary mt-4 px-4 mx-4" onclick="location.href='../';" value="Volver" />
 {% endblock %}
