@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lista de asignaturas</h1>
+<table class="table table-striped table-hover">
+	<thead class="thead-dark">
+		<tr>
+			<th>Codigo</th>
+			<th>Nombre</th>
+			<th>Semestre</th>
+		</tr>
+	</thead>
+	{% for instance in object_list %}
+	<tr>
+		<td>{{ instance.codigo }}</td>
+		<td>{{ instance.nombre }}</td>
+		<td>{{ instance.semestre }}</td>
+	</tr>
+	{% endfor %}
+</table>
+<a href="crear">Nueva asignatura</a>
+{% endblock %}

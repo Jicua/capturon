@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>¿Está seguro de que desea rechazar esta solicitud?</h1>
+<form method='POST'> {% csrf_token %}
+	<input type="hidden" name="nombre" value="{{ obj.nombre }}">
+	<input type="hidden" name="apellidoP" value="{{ obj.apellidoP }}">
+	<input type="hidden" name="apellidoM" value="{{ obj.apellidoM }}">
+	<input type="hidden" name="correo" value="{{ obj.correo }}">
+	<input type="hidden" name="generacion" value="{{ obj.generacion }}">
+	<input type="hidden" name="rut" value="{{ obj.rut }}">
+	<input type="hidden" name="diaInicio" value="{{ obj.diaInicio }}">
+	<input type="hidden" name="mesInicio" value="{{ obj.mesInicio }}">
+	<input type="hidden" name="diaFin" value="{{ obj.diaFin }}">
+	<input type="hidden" name="mesFin" value="{{ obj.mesFin }}">
+	<input type="hidden" name="motivo" value="{{ obj.motivo }}">
+	<input type="hidden" name="asignatura" value="{{ obj.asignatura.id }}">
+	<input type="hidden" name="justificativo" value="{{ obj.justificativo }}">
+	<input type="hidden" name="estado" value="2">
+
+	<input type="submit" class="btn btn-success btn-lg px-4 mx-4" value='Sí'/>
+	<input type="button" class="btn btn-secondary btn-lg px-4 mx-4" onclick="location.href='./';" value="Cancelar" />
+</form>
+{% endblock %}

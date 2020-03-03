@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Lista de justificaciones</h1>
+<table class="table table-striped table-hover">
+	<thead class="thead-dark">
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Generación</th>
+			<th>Fecha Inicio</th>
+			<th>Fecha Término</th>
+			<th>Estado</th>
+			<th></th>
+		</tr>
+	</thead>
+	{% for justificacion in object_list %}
+	<tr>
+		<td>{{ justificacion.nombre }}</td>
+		<td>{{ justificacion.apellidoP }}</td>
+		<td>{{ justificacion.generacion }}</td>
+		<td>{{ justificacion.diaInicio }}/{{ justificacion.mesInicio }}</td>
+		<td>{{ justificacion.diaFin }}/{{ justificacion.mesFin }}</td>
+		<td>{% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</td>
+		<td><a href="{{ justificacion.get_absolute_url }}">Ver detalles</a></td>
+	</tr>
+	{% endfor %}
+</table>
+<a href="crear">Nueva justificación</a>
+{% endblock %}
