@@ -30,3 +30,12 @@ class JustificacionForm(forms.ModelForm):
 			'justificativo',
 			'estado'
 		]
+
+	def clean_rut(self, *args, **kwargs):
+		rut = self.cleaned_data.get("rut")
+		rut = rut.upper()
+		valid = re.compile('\d{7,8}-[\dK]')
+		if valid.match(rut) == None:
+			raise forms.ValidationError("Rut inválido")
+		else:
+			return rut

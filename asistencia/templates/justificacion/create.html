@@ -1,9 +1,141 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method='POST' enctype='multipart/form-data'> {% csrf_token %}
-	{{ form.as_p }}
-	<input type='submit' class="btn btn-success" value='Guardar'/>
-	<input type="button" class="btn btn-secondary" onclick="location.href='../';" value="Cancelar" />
-</form>
+<h1>Justificativo Inasistencia a Clases Estudiantes IICG UACh</h1>
+<p>Este formulario sirve para enviar antecedentes de justificación de inasistencia a clases. 
+El envío de los antecedentes no asegura la aprobación del justificativo.
+La escuela evaluará la pertinencia, validez y aprobación de su justificativo de inasistencia.</p>
+<div class="card">
+  	<div class="card-body">
+		<form method='POST' enctype='multipart/form-data'> {% csrf_token %}
+			<div class="card bg-light">
+  			<div class="card-body">
+			<div class="form-group">
+		    	<label>RUT</label>
+		    	<input type="text" class="form-control" name="rut" pattern="\d{7,8}-[\dK]">
+		    	<small class="form-text text-muted">Ingrese rut sin puntos y con guión</small>
+		  	</div>
+			</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+			<div class="form-group">
+		    	<label>Nombre del estudiante</label>
+		    	<input type="text" class="form-control" name="nombre">
+		  	</div>
+			</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<div class="form-group">
+		    	<label>Apellido paterno</label>
+		    	<input type="text" class="form-control" name="apellidoP">
+		  	</div>
+		 	</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<div class="form-group">
+		    	<label>Apellido materno</label>
+		    	<input type="text" class="form-control" name="apellidoM">
+		 	</div>
+			</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<div class="form-group">
+		    	<label>Dirección de correo electrónico UACh</label>
+		    	<input type="text" class="form-control" name="correo" pattern=".*@alumnos.uach.cl$">
+		  	</div>
+		  	</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<div class="form-group">
+		    	<label>Generación</label>
+		    	<select class="form-control" name="generacion">
+		    	{% for i in anyos %}
+		    	<option>{{ i }}</option>
+		    	{% endfor %}
+		    </select>	
+		  	</div>
+		  	</div>
+			</div>
+			<br/>
+		  	<div class="card bg-light">
+		  		<div class="card-body">
+				  	<label>Fecha justificativo inasistencia</label>
+				  	<div class="form-row">
+				    	<div class="col">
+				  			<div class="form-group">
+				    			<label>Día de inicio</label>
+				    			<input type="number" class="form-control" name="diaInicio" min="1" max="31">
+				  			</div>
+				  		</div>
+				  		<div class="col">
+						  	<div class="form-group">
+						    	<label>Mes de inicio</label>
+						    	<input type="number" class="form-control" name="mesInicio" min="1" max="12">
+						  	</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+				    			<label>Día de término</label>
+				    			<input type="number" class="form-control" name="diaFin" min="1" max="31">
+				  			</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label>Mes de término</label>
+				    			<input type="number" class="form-control" name="mesFin" min="1" max="12">
+				    		</div>
+				    	</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<div class="form-group">
+		    	<label>Motivo inasistencia</label>
+		    	<textarea class="form-control" name="motivo" rows="3"></textarea>
+		  	</div>
+		  	</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+		  	<label>Asignatura(s) que justifica</label>
+		  	<select class="custom-select" name="asignatura" multiple>
+		  		<option selected>Seleccione una o más asignaturas</option>
+		  		{% for obj in asignaturas %}
+		  			<option value="{{ obj.id }}">{{ obj.nombre }}</option>
+		  		{% endfor %}
+			</select>
+			</div>
+			</div>
+			<br/>
+			<div class="card bg-light">
+  			<div class="card-body">
+			<div class="form-group">
+		    	<label>Certificado médico, licencia médica (plazo 3 días hábiles) o respaldos de justificativo</label>
+		    	<input type="file" class="form-control-file" name="justificativo">
+		  	</div>
+		  	</div>
+			</div>
+		  	<input type="hidden" name="estado" value=0>
+			<br/>
+			<center>
+			<input type='submit' class="btn btn-success btn-lg mr-4" value='Guardar'/>
+			<input type="button" class="btn btn-secondary btn-lg" onclick="location.href='../';" value="Cancelar" />
+			</center>
+			<br/>
+		</form>
+	</div>
+</div>
 {% endblock %}

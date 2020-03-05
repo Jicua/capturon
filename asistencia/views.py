@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .forms import AsignaturaForm, JustificacionForm
@@ -61,11 +62,23 @@ def justificacion_detail_page(request, id):
 
 def justificacion_create_page(request):
 	form = JustificacionForm(request.POST or None, request.FILES or None)
+	asignaturas = Asignatura.objects.all()
+	now = datetime.datetime.now()
+	anyoActual = now.year
+	anyos = []
+	i = 0
+	while i < 8:
+		anyos.append(anyoActual - i)
+		i+=1
 	if form.is_valid():
 		form.save()
 		form = JustificacionForm()
 		return redirect('./')
-	context = {"form": form}
+	context = {
+		"form": form,
+		"asignaturas": asignaturas,
+		"anyos": anyos
+	}
 	return render(request, "justificacion/create.html", context)
 
 def justificacion_update_page(request, id=id):
