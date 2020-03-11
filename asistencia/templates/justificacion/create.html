@@ -11,7 +11,7 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 			<div class="form-group">
-		    	<label>RUT</label>
+		    	<label><b>RUT</b></label>
 		    	<input type="text" class="form-control" name="rut" pattern="\d{7,8}-[\dK]">
 		    	<small class="form-text text-muted">Ingrese rut sin puntos y con guión</small>
 		  	</div>
@@ -21,8 +21,8 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 			<div class="form-group">
-		    	<label>Nombre del estudiante</label>
-		    	<input type="text" class="form-control" name="nombre">
+		    	<label><b>Nombre del estudiante</b></label>
+		    	<input type="text" class="form-control" name="nombre" pattern="^([^0-9]*)$">
 		  	</div>
 			</div>
 			</div>
@@ -30,8 +30,8 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 		  	<div class="form-group">
-		    	<label>Apellido paterno</label>
-		    	<input type="text" class="form-control" name="apellidoP">
+		    	<label><b>Apellido paterno</b></label>
+		    	<input type="text" class="form-control" name="apellidoP" pattern="^([^0-9]*)$">
 		  	</div>
 		 	</div>
 			</div>
@@ -39,8 +39,8 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 		  	<div class="form-group">
-		    	<label>Apellido materno</label>
-		    	<input type="text" class="form-control" name="apellidoM">
+		    	<label><b>Apellido materno</b></label>
+		    	<input type="text" class="form-control" name="apellidoM" pattern="^([^0-9]*)$">
 		 	</div>
 			</div>
 			</div>
@@ -48,7 +48,7 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 		  	<div class="form-group">
-		    	<label>Dirección de correo electrónico UACh</label>
+		    	<label><b>Dirección de correo electrónico UACh</b></label>
 		    	<input type="text" class="form-control" name="correo" pattern=".*@alumnos.uach.cl$">
 		  	</div>
 		  	</div>
@@ -57,7 +57,7 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 		  	<div class="form-group">
-		    	<label>Generación</label>
+		    	<label><b>Generación</b></label>
 		    	<select class="form-control" name="generacion">
 		    	{% for i in anyos %}
 		    	<option>{{ i }}</option>
@@ -69,29 +69,29 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<br/>
 		  	<div class="card bg-light">
 		  		<div class="card-body">
-				  	<label>Fecha justificativo inasistencia</label>
+				  	<label><b>Fecha justificativo inasistencia</b></label>
 				  	<div class="form-row">
 				    	<div class="col">
 				  			<div class="form-group">
-				    			<label>Día de inicio</label>
+				    			<label><b>Día de inicio</b></label>
 				    			<input type="number" class="form-control" name="diaInicio" min="1" max="31">
 				  			</div>
 				  		</div>
 				  		<div class="col">
 						  	<div class="form-group">
-						    	<label>Mes de inicio</label>
+						    	<label><b>Mes de inicio</b></label>
 						    	<input type="number" class="form-control" name="mesInicio" min="1" max="12">
 						  	</div>
 						</div>
 						<div class="col">
 							<div class="form-group">
-				    			<label>Día de término</label>
+				    			<label><b>Día de término</b></label>
 				    			<input type="number" class="form-control" name="diaFin" min="1" max="31">
 				  			</div>
 						</div>
 						<div class="col">
 							<div class="form-group">
-								<label>Mes de término</label>
+								<label><b>Mes de término</b></label>
 				    			<input type="number" class="form-control" name="mesFin" min="1" max="12">
 				    		</div>
 				    	</div>
@@ -102,7 +102,7 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<div class="card bg-light">
   			<div class="card-body">
 		  	<div class="form-group">
-		    	<label>Motivo inasistencia</label>
+		    	<label><b>Motivo inasistencia</b></label>
 		    	<textarea class="form-control" name="motivo" rows="3"></textarea>
 		  	</div>
 		  	</div>
@@ -110,20 +110,21 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 			<br/>
 			<div class="card bg-light">
   			<div class="card-body">
-		  	<label>Asignatura(s) que justifica</label>
+		  	<label><b>Asignatura(s) que justifica</b></label>
 		  	<select class="custom-select" name="asignatura" multiple>
 		  		<option selected>Seleccione una o más asignaturas</option>
 		  		{% for obj in asignaturas %}
 		  			<option value="{{ obj.id }}">{{ obj.nombre }}</option>
 		  		{% endfor %}
 			</select>
+			<small class="form-text text-muted">Seleccione más de una con la tecla control</small>
 			</div>
 			</div>
 			<br/>
 			<div class="card bg-light">
   			<div class="card-body">
 			<div class="form-group">
-		    	<label>Certificado médico, licencia médica (plazo 3 días hábiles) o respaldos de justificativo</label>
+		    	<label><b>Certificado médico, licencia médica (plazo 3 días hábiles) o respaldos de justificativo</b></label>
 		    	<input type="file" class="form-control-file" name="justificativo">
 		  	</div>
 		  	</div>
@@ -131,11 +132,11 @@ La escuela evaluará la pertinencia, validez y aprobación de su justificativo d
 		  	<input type="hidden" name="estado" value=0>
 			<br/>
 			<center>
-			<input type='submit' class="btn btn-success btn-lg mr-4" value='Guardar'/>
+			<input type='submit' class="btn btn-success btn-lg mr-4" value='Enviar'/>
 			<input type="button" class="btn btn-secondary btn-lg" onclick="location.href='../';" value="Cancelar" />
 			</center>
-			<br/>
 		</form>
 	</div>
 </div>
+<br/>
 {% endblock %}

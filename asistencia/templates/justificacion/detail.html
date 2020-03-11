@@ -3,55 +3,58 @@
 {% block content %}
 <h1>Detalle de Justificación</h1>
 <br/>
-
-<div class="row">
-	<div class="column pr-4">
-		<table class="mb-2">
-			<tr>
-				<td><b>Estado:</b></td>
-				<td>{% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</td>
-			</tr>
-			<tr>
-				<td><b>Nombre:</b></td>
-				<td>{{ justificacion.nombre }} {{ justificacion.apellidoP }} {{ justificacion.apellidoM }}</td>
-			</tr>
-			<tr>
-				<td><b>Rut:</b></td>
-				<td>{{ justificacion.rut }}</td>
-			</tr>
-			<tr>
-				<td><b>Correo:</b></td>
-				<td>{{ justificacion.correo }}</td>
-			</tr>
-			<tr>
-				<td class="pr-4"><b>Generación:</b></td>
-				<td>{{ justificacion.generacion }}</td>
-			</tr>
-		</table>
-	</div>
-		<div class="column px-4">
-			<table class="mb-2">
-				<tr>
-					<td><b>Fecha de inicio:</b></td>
-					<td>{{ justificacion.diaInicio }} del {{ justificacion.mesInicio }}</td>
-				</tr>
-				<tr>
-					<td class="pr-4"><b>Fecha de término:</b></td>
-					<td>{{ justificacion.diaFin }}  del {{ justificacion.mesFin }}</td>
-				</tr>
-				<tr>
-					<td><b>Motivo:</b></td>
-					<td>{{ justificacion.motivo }}</td>
-				</tr>
-				<tr>
-					<td><b>Asignatura:</b></td>
-					<td>{{ justificacion.asignatura }}</td>
-				</tr>
-				<tr>
-					<td><b>Justificativo:</b></td>
-					<td><a href="{{ justificacion.justificativo.url }}">Ver archivo</a></td>
-				</tr>
-		</table>
+<div class="card">
+  	<div class="card-body">
+		<div class="row">
+			<div class="column pr-4 mr-4">
+				<table class="mb-2">
+					<tr>
+						<td><b>Estado:</b></td>
+						<td>{% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</td>
+					</tr>
+					<tr>
+						<td><b>Nombre:</b></td>
+						<td>{{ justificacion.nombre }} {{ justificacion.apellidoP }} {{ justificacion.apellidoM }}</td>
+					</tr>
+					<tr>
+						<td><b>Rut:</b></td>
+						<td>{{ justificacion.rut }}</td>
+					</tr>
+					<tr>
+						<td><b>Correo:</b></td>
+						<td>{{ justificacion.correo }}</td>
+					</tr>
+					<tr>
+						<td class="pr-4"><b>Generación:</b></td>
+						<td>{{ justificacion.generacion }}</td>
+					</tr>
+				</table>
+			</div>
+				<div class="column px-4 ml-4">
+					<table class="mb-2">
+						<tr>
+							<td><b>Fecha de inicio:</b></td>
+							<td>{{ justificacion.diaInicio }} del {{ justificacion.mesInicio }}</td>
+						</tr>
+						<tr>
+							<td class="pr-4"><b>Fecha de término:</b></td>
+							<td>{{ justificacion.diaFin }}  del {{ justificacion.mesFin }}</td>
+						</tr>
+						<tr>
+							<td><b>Motivo:</b></td>
+							<td>{{ justificacion.motivo }}</td>
+						</tr>
+						<tr>
+							<td><b>Asignatura(s):</b></td>
+							<td>{% for asignatura in asignaturas %} {% if forloop.last %} {{ asignatura }} {% else %} {{ asignatura }}, {% endif %} {% endfor %}</td>
+						</tr>
+						<tr>
+							<td><b>Justificativo:</b></td>
+							<td><a href="{{ justificacion.justificativo.url }}">Ver archivo</a></td>
+						</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 {% if justificacion.estado == 0 %}

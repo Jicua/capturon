@@ -11,7 +11,7 @@
     display: block;
   }
 </style>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d4d4d4;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00659B;">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -20,18 +20,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link mr-4" href="/"><img src="/media/iconos/formulario.png"/> Formulario de Justificación<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/contacto">Contacto</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/asistencia/asignatura">Asignaturas</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/asistencia/justificacion">Justificaciones</a>
+        <a class="nav-link mr-4" href="/contacto"><img src="/media/iconos/contacto.png"/> Contacto</a>
       </li>
       {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link mr-4" href="/asistencia/asignatura"><img src="/media/iconos/asignaturas.png"/> Asignaturas</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/asistencia/justificacion"><img src="/media/iconos/justificaciones.png"/> Justificaciones</a>
+      </li>
+      <!--
       <li class="nav-item active dropdown">
         <a href="/fichas/">
         <a class="nav-link dropdown-toggle" href="/fichas/" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -43,6 +44,7 @@
           <a class="dropdown-item" href="/fichas/vehiculos/">Vehículos</a>
           <a class="dropdown-item" href="/fichas/atenciones/">Atenciones</a>
       </li>
+      -->
       {% endif %}
       <li class="nav-item active">
 
@@ -53,16 +55,16 @@
     </ul>
     {% if user.is_authenticated %}
     <span class="navbar-text px-2">
-      Sesión iniciada como {{ user.first_name }}
+      Sesión iniciada
     </span>
     <form class="form-inline">
-      <a href="/accounts/logout">
+      <a href="/logout/">
         <button class="btn btn-sm btn-secondary" type="button">Cerrar sesión</button>
       </a>
     </form>
     {% else %}
-      <a href="/accounts/login/?next=/fichas/">
-        <input class="btn btn-primary" type="submit" value="Iniciar sesión" />
+      <a href="/login/">
+        <input class="btn btn-secondary" type="submit" value="Iniciar sesión" />
       </a>
     {% endif %}
   </div>

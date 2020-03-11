@@ -7,9 +7,14 @@ class Asignatura(models.Model):
 	codigo			= models.CharField(max_length=20)
 	nombre			= models.CharField(max_length=40)
 	semestre		= models.PositiveIntegerField()
+	profesor		= models.CharField(max_length=40, null=True)
+	correo			= models.CharField(max_length=80, null=True)
 
 	def __str__(self):
 		return self.nombre
+
+	def get_absolute_url(self):
+		return reverse("asistencia:asignatura-detail", kwargs={"id": self.id})
 
 class Justificacion(models.Model):
 	nombre 			= models.CharField(max_length=40)
@@ -23,7 +28,7 @@ class Justificacion(models.Model):
 	diaFin			= models.PositiveIntegerField()
 	mesFin			= models.PositiveIntegerField()
 	motivo			= models.CharField(max_length=255)
-	asignatura		= models.ForeignKey('Asignatura', on_delete=models.CASCADE)
+	asignatura		= models.ManyToManyField('Asignatura')
 	justificativo	= models.FileField(upload_to='justificativos/')
 	estado			= models.PositiveIntegerField() # 0 = pendiente, 1 = aceptado, 2 = rechazado
 

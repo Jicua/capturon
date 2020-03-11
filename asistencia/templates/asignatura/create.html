@@ -3,7 +3,7 @@
 {% block content %}
 <form method='POST'> {% csrf_token %}
 	{{ form.as_p }}
-	<input type='submit' class="btn btn-success" value='Guardar'/>
-	<input type="button" class="btn btn-secondary" onclick="location.href='../';" value="Cancelar" />
+	<input type='submit' class="btn btn-lg btn-success" value='Guardar'/>
+	<input type="button" class="btn btn-lg btn-secondary" onclick="location.href='../';" value="Cancelar" />
 </form>
 {% endblock %}

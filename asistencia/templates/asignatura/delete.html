@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action='.' method='POST'> {% csrf_token %}
+	<h2>¿Seguro que quiere eliminar la asignatura {{ asignatura.codigo }} {{ asignatura.nombre }}?</h2>
+	<br/>
+	<p>
+		<input type='submit' class="btn btn-danger btn-lg" value='Sí' />
+		<input type="button" class="btn btn-secondary btn-lg" onclick="location.href='../';" value="Cancelar" />
+	</p>
+	
+</form>
+
+{% endblock %}
