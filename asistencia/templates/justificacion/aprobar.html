@@ -9,15 +9,12 @@
 	<input type="hidden" name="correo" value="{{ obj.correo }}">
 	<input type="hidden" name="generacion" value="{{ obj.generacion }}">
 	<input type="hidden" name="rut" value="{{ obj.rut }}">
-	<input type="hidden" name="diaInicio" value="{{ obj.diaInicio }}">
-	<input type="hidden" name="mesInicio" value="{{ obj.mesInicio }}">
-	<input type="hidden" name="diaFin" value="{{ obj.diaFin }}">
-	<input type="hidden" name="mesFin" value="{{ obj.mesFin }}">
+	<input type="hidden" name="diaInicio" value="{{ obj.diaInicio|date:'Y-m-d' }}">
+	<input type="hidden" name="diaFin" value="{{ obj.diaFin|date:'Y-m-d' }}">
 	<input type="hidden" name="motivo" value="{{ obj.motivo }}">
-	<input type="hidden" name="asignatura" value="{{ obj.asignatura.id }}">
+	{{ form.asignatura.as_hidden }}
 	<input type="hidden" name="justificativo" value="{{ obj.justificativo }}">
 	<input type="hidden" name="estado" value="1">
-
 	<input type="submit" class="btn btn-success btn-lg px-4 mx-4" value='Confirmar'/>
 	<input type="button" class="btn btn-secondary btn-lg px-4 mx-4" onclick="location.href='./';" value="Cancelar" />
 </form>

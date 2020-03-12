@@ -21,8 +21,8 @@
 		<td>{{ justificacion.nombre }}</td>
 		<td>{{ justificacion.apellidoP }}</td>
 		<td>{{ justificacion.generacion }}</td>
-		<td>{{ justificacion.diaInicio }}/{{ justificacion.mesInicio }}</td>
-		<td>{{ justificacion.diaFin }}/{{ justificacion.mesFin }}</td>
+		<td>{{ justificacion.diaInicio }}</td>
+		<td>{{ justificacion.diaFin }}</td>
 		<td>{% if justificacion.estado == 0 %}<font color="grey">Pendiente</font>{% endif %}{% if justificacion.estado == 1 %}<font color="green">Aceptada</font>{% endif %}{% if justificacion.estado == 2 %}<font color="red">Rechazada</font>{% endif %}</td>
 		<td><a href="{{ justificacion.get_absolute_url }}">Ver detalles</a></td>
 	</tr>

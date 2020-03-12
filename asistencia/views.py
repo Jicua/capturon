@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .forms import AsignaturaForm, JustificacionForm
 from .models import Asignatura, Justificacion
+from django import forms
 
 # Create your views here.
 
@@ -11,8 +12,10 @@ from .models import Asignatura, Justificacion
 
 @login_required
 def asignatura_list_page(request):
-	queryset = Asignatura.objects.all()
-	context = {"object_list": queryset}
+	queryset = Asignatura.objects.all().order_by('semestre', 'nombre')
+	context = {
+		"object_list": queryset
+	}
 	return render(request, "asignatura/list.html", context)
 
 @login_required
@@ -23,7 +26,8 @@ def asignatura_create_page(request):
 		form = AsignaturaForm()
 		return redirect('./')
 	context = {
-		"form": form
+		"form": form,
+		"title": "Agregar nueva asignatura"
 	}
 	return render(request, "asignatura/create.html", context)
 
@@ -36,7 +40,8 @@ def asignatura_update_page(request, id):
 		form = AsignaturaForm()
 		return redirect(obj.get_absolute_url())
 	context = {
-		"form": form
+		"form": form,
+		"title": "Editar asignatura"
 	}
 	return render(request, "asignatura/create.html", context)
 
@@ -45,7 +50,7 @@ def asignatura_detail_page(request, id):
 	obj = get_object_or_404(Asignatura, id=id)
 	context = {
 		"asignatura": obj
-		}
+	}
 	return render(request, "asignatura/detail.html", context)
 
 @login_required
@@ -65,14 +70,17 @@ def asignatura_delete_page(request, id):
 def justificacion_aprobar_page(request, id):
 	obj = get_object_or_404(Justificacion, id=id)
 	form = JustificacionForm(request.POST or None, request.FILES or None, instance=obj)
+	asignaturas = obj.asignatura.all()
 	if form.is_valid():
 		form.save()
 		form = JustificacionForm()
 		return redirect('../')
 	context = {
 		"form": form,
+		"asignaturas": asignaturas,
 		"obj": obj
 	}
+	print(form.errors)
 	return render(request, "justificacion/aprobar.html", context)
 
 @login_required
@@ -91,7 +99,7 @@ def justificacion_rechazar_page(request, id):
 
 @login_required
 def justificacion_list_page(request):
-	queryset = Justificacion.objects.all().order_by('estado', 'mesInicio', 'diaInicio')
+	queryset = Justificacion.objects.all().order_by('estado', 'diaInicio')
 	context = {"object_list": queryset}
 	return render(request, "justificacion/list.html", context)
 
@@ -107,7 +115,7 @@ def justificacion_detail_page(request, id):
 
 def justificacion_create_page(request):
 	form = JustificacionForm(request.POST or None, request.FILES or None)
-	asignaturas = Asignatura.objects.all()
+	asignaturas = Asignatura.objects.all().order_by('semestre', 'nombre')
 	now = datetime.datetime.now()
 	anyoActual = now.year
 	anyos = []

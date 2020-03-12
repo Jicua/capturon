@@ -5,10 +5,10 @@ from django.urls import reverse
 
 class Asignatura(models.Model):
 	codigo			= models.CharField(max_length=20)
-	nombre			= models.CharField(max_length=40)
-	semestre		= models.PositiveIntegerField()
-	profesor		= models.CharField(max_length=40, null=True)
-	correo			= models.CharField(max_length=80, null=True)
+	nombre			= models.CharField(max_length=80)
+	semestre		= models.PositiveIntegerField(null=True, blank=True)
+	profesor		= models.CharField(max_length=40, null=True, blank=True)
+	correo			= models.CharField(max_length=80, null=True, blank=True)
 
 	def __str__(self):
 		return self.nombre
@@ -23,10 +23,8 @@ class Justificacion(models.Model):
 	correo			= models.CharField(max_length=80)
 	generacion		= models.PositiveIntegerField()
 	rut 			= models.CharField(max_length=10)
-	diaInicio		= models.PositiveIntegerField()
-	mesInicio		= models.PositiveIntegerField()
-	diaFin			= models.PositiveIntegerField()
-	mesFin			= models.PositiveIntegerField()
+	diaInicio		= models.DateField()
+	diaFin			= models.DateField()
 	motivo			= models.CharField(max_length=255)
 	asignatura		= models.ManyToManyField('Asignatura')
 	justificativo	= models.FileField(upload_to='justificativos/')
